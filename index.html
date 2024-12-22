@@ -108,7 +108,7 @@ body {
 
 .teacher-img {
   width: 100%;
-  height: 250px;
+  height: 60%;
   object-fit: cover;
 }
 
@@ -202,15 +202,19 @@ body {
 
 <script>
 const teacherNames = [
-  'Sarah Johnson', 'Michael Brown', 'Emily Davis', 'David Wilson',
-  'Lisa Anderson', 'James Taylor', 'Jennifer Martinez', 'Robert Thompson',
-  'Jessica White', 'William Clark'
+  'Tom', 'Anna', 'Jay', 'Diana',
+  'Talia', 'Emma', 'Harry', 'Jaime'
 ];
 
 const specialties = [
-  'Business English', 'Conversation Skills', 'IELTS Preparation', 'Academic English',
-  'Pronunciation Expert', 'Public Speaking', 'Grammar Specialist', 'Writing Skills',
-  'Test Preparation', 'English Literature'
+  "9 years teaching, Bachelor's in English Education, CELTA-certified. Specializes in IELTS, writing, reading, and children's English. Focus on overcoming speaking fear and achieving goals.",
+  "6 years teaching, degree in Economics. Uses fun warm-up activities with props and visuals. Focus on vocabulary, engaging students with pictures, toys, and games.",
+  "2 years teaching, lively yet gentle approach. Starts with games to build rapport, keeps lessons fun and engaging for all ages.",
+  "10 years teaching, Master's degree. Expert in scenario-based learning with props and interactive games to keep students engaged.",
+  "11 years teaching, experience in kindergartens and online. Focus on English, science, and math. Uses props and games for dynamic, engaging lessons.",
+  "4 years teaching, Bachelor's in English Literature. Relaxed classroom, pleasant voice, and thought-provoking questions for engaging lessons.",
+  "5 years teaching, degree in English Language and Literature. Focus on pronunciation, error correction, grammar, and reading.",
+  "10+ years teaching, Bachelor's in Criminal Justice. Passionate, guides students to think critically and develop advanced language skills."
 ];
 
 const teachersGrid = document.querySelector('.teachers-grid');
@@ -220,7 +224,7 @@ teacherNames.forEach((name, index) => {
   teacherCard.className = 'teacher-card';
   
   teacherCard.innerHTML = `
-    <img class="teacher-img" src="https://picsum.photos/seed/${index}/300/300" alt="${name}">
+    <img class="teacher-img" src="./images/${name}.jpg" alt="${name}">
     <div class="teacher-info">
       <h3 class="teacher-name">${name}</h3>
       <p class="teacher-specialty">${specialties[index]}</p>
