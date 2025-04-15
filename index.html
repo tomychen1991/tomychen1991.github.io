@@ -1,18 +1,28 @@
 <html><head><base href="." />
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="./favicon-96x96.png" sizes="96x96" />
 <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
 <link rel="shortcut icon" href="./favicon.ico" />
 <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
 <meta name="apple-mobile-web-app-title" content="Speak Easy" />
 <link rel="manifest" href="./site.webmanifest" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <title>Speak Easy - Your Online English Speaking Platform</title>
 <style>
 :root {
-  --primary: #1abc9c;
-  --secondary: #3498DB;
-  --accent: #ff6b6b;
+  --primary: #4361ee;
+  --primary-light: #4895ef;
+  --secondary: #3a0ca3;
+  --accent: #f72585;
+  --accent-light: #ff758f;
   --light: #f8f9fa;
+  --dark: #212529;
+  --gray: #6c757d;
+  --white: #ffffff;
+  --section-padding: 5rem 2rem;
 }
 
 * {
@@ -22,14 +32,35 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Poppins', sans-serif;
   line-height: 1.6;
+  color: var(--dark);
+  background-color: var(--white);
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+section {
+  padding: var(--section-padding);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
 }
 
 .header {
-  background-color: white;
-  padding: 1rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background-color: var(--white);
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
   position: fixed;
   width: 100%;
   top: 0;
@@ -37,187 +68,433 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: all 0.3s ease;
+}
+
+.header.scrolled {
+  padding: 0.5rem 2rem;
 }
 
 .logo {
   height: 50px;
+  display: flex;
+  align-items: center;
 }
 
 .logo img {
   height: 100%;
   object-fit: contain;
+  border-radius: 5px;
 }
 
 .header-cta {
   padding: 0.75rem 1.5rem;
   background-color: var(--accent);
-  color: white;
+  color: var(--white);
   text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-  transition: background-color 0.3s;
-  margin-right: 2rem;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: all 0.3s;
+  box-shadow: 0 4px 10px rgba(247, 37, 133, 0.3);
 }
 
 .header-cta:hover {
-  background-color: #ff5252;
+  background-color: var(--accent-light);
+  transform: translateY(-2px);
 }
 
 .banner {
   margin-top: 82px;
-  height: 500px;
-  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3');
+  height: 80vh;
+  min-height: 600px;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3');
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: var(--white);
   text-align: center;
+  position: relative;
+}
+
+.banner::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to top, var(--white), transparent);
+}
+
+.banner-content {
+  max-width: 800px;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
 }
 
 .banner-content h1 {
   font-size: 3.5rem;
-  margin-bottom: 1rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  animation: fadeInUp 1s ease;
+}
+
+.banner-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  animation: fadeInUp 1s ease 0.3s;
+  animation-fill-mode: both;
 }
 
 .teachers-section {
-  padding: 4rem 2rem;
   background-color: var(--light);
+  position: relative;
+  overflow: hidden;
+}
+
+.teachers-section::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  width: 200px;
+  height: 200px;
+  background-color: rgba(67, 97, 238, 0.1);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.teachers-section::after {
+  content: '';
+  position: absolute;
+  bottom: -50px;
+  right: -50px;
+  width: 200px;
+  height: 200px;
+  background-color: rgba(247, 37, 133, 0.1);
+  border-radius: 50%;
+  z-index: 1;
 }
 
 .section-title {
   text-align: center;
   margin-bottom: 3rem;
   color: var(--primary);
+  font-weight: 700;
+  font-size: 2.5rem;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background-color: var(--accent);
 }
 
 .teachers-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
+  z-index: 2;
 }
 
 .teacher-card {
-  background: white;
-  border-radius: 10px;
+  background: var(--white);
+  border-radius: 15px;
   overflow: hidden;
-  transition: transform 0.3s;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  position: relative;
 }
 
 .teacher-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.teacher-img-container {
+  position: relative;
+  overflow: hidden;
+  height: 280px;
 }
 
 .teacher-img {
   width: 100%;
-  height: 250px;
+  height: 100%;
   object-fit: cover;
+  transition: transform 0.5s ease;
 }
 
-@media (max-width: 600px) {
-  .teachers-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .teacher-img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-  }
+.teacher-card:hover .teacher-img {
+  transform: scale(1.05);
 }
 
 .teacher-info {
-  padding: 1.5rem;
+  padding: 1.8rem;
 }
 
 .teacher-name {
-  font-size: 1.2rem;
-  color: var(--primary);
+  font-size: 1.4rem;
+  color: var(--secondary);
   margin-bottom: 0.5rem;
+  font-weight: 600;
 }
 
 .teacher-specialty {
-  color: var(--secondary);
-  font-size: 0.9rem;
+  color: var(--gray);
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 .more-teachers {
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 3rem;
   font-size: 2rem;
   color: var(--primary);
-}
-
-.become-teacher {
-  padding: 4rem 2rem;
-  text-align: center;
-  background-color: var(--primary);
-  color: white;
-}
-
-.cta-button {
-  display: inline-block;
-  padding: 1rem 2rem;
-  background-color: var(--accent);
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-  margin-top: 2rem;
-  transition: background-color 0.3s;
-}
-
-.cta-button:hover {
-  background-color: #ff5252;
-}
-
-.footer {
-  text-align: center;
-  padding: 2rem;
-  background-color: white;
-  color: #333;
-  font-size: 0.9rem;
-  border-top: 1px solid #eee;
-}
-
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 50 1rem;
-}
-
-.text-left {
-  text-align: left;
+  opacity: 0.8;
 }
 
 .job-opening {
   margin-bottom: 3rem;
+  background-color: var(--white);
+  border-radius: 15px;
+  padding: 3rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .job-opening h2 {
   color: var(--primary);
   margin-bottom: 2rem;
   text-align: center;
+  font-size: 2.2rem;
+  font-weight: 700;
 }
 
 .job-opening h3 {
-  color: var(--primary);
-  margin-bottom: 1rem;
+  color: var(--secondary);
+  margin: 1.5rem 0 1rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.job-opening h3::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background-color: var(--accent);
+  border-radius: 2px;
 }
 
 .job-opening p, .job-opening ul {
   margin-bottom: 1rem;
+  color: var(--dark);
+}
+
+.job-opening strong {
+  color: var(--secondary);
+  font-weight: 600;
 }
 
 .job-opening ul {
-  list-style-type: disc;
+  list-style-type: none;
   padding-left: 1.5rem;
   text-align: left;
+}
+
+.job-opening ul li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.job-opening ul li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 1.2rem;
+}
+
+.job-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.highlight {
+  background-color: rgba(67, 97, 238, 0.1);
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  min-width: 200px;
+  text-align: center;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  border-left: 3px solid var(--primary);
+}
+
+.highlight strong {
   display: inline-block;
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+}
+
+.become-teacher {
+  text-align: center;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+.become-teacher::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: -100px;
+  width: 300px;
+  height: 300px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+}
+
+.become-teacher::after {
+  content: '';
+  position: absolute;
+  bottom: -100px;
+  right: -100px;
+  width: 300px;
+  height: 300px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+}
+
+.become-teacher h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.become-teacher p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background-color: var(--accent);
+  color: var(--white);
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 600;
+  margin-top: 1rem;
+  transition: all 0.3s;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.cta-button:hover {
+  background-color: var(--accent-light);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+}
+
+.footer {
+  text-align: center;
+  padding: 2rem;
+  background-color: var(--dark);
+  color: var(--light);
+  font-size: 0.9rem;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .banner-content h1 {
+    font-size: 2.5rem;
+  }
+  
+  .banner {
+    height: 70vh;
+  }
+  
+  .teachers-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .teacher-img-container {
+    height: 220px;
+  }
+  
+  .job-opening {
+    padding: 2rem;
+  }
+  
+  section {
+    padding: 4rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner-content h1 {
+    font-size: 2rem;
+  }
+  
+  .banner {
+    height: 60vh;
+  }
+  
+  .teachers-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .job-opening {
+    padding: 1.5rem;
+  }
+  
+  .become-teacher h2 {
+    font-size: 2rem;
+  }
 }
 </style>
 </head>
@@ -232,15 +509,24 @@ body {
   <div class="banner">
     <div class="banner-content">
       <h1>Master English Through Conversation</h1>
-      <p>Connect with native speakers and improve your speaking skills</p>
+      <p>Connect with native speakers and elevate your speaking skills to the next level</p>
+      <a href="#job-details" class="cta-button">Learn More</a>
     </div>
   </div>
 
-  <section class="job-opening container text-center">
+  <section class="job-opening container" id="job-details">
     <h2>Job Opening: Online ESL Teacher</h2>
-    <p><strong>Pay:</strong> $4–$14/hour</p>
-    <p><strong>Type:</strong> Part-time/Full-time</p>
-    <p><strong>Schedule:</strong> Flexible, 15–20+ hours per week</p>
+    <div class="job-highlights">
+      <div class="highlight">
+        <p><strong>Pay:</strong> $4–$14/hour</p>
+      </div>
+      <div class="highlight">
+        <p><strong>Type:</strong> Part-time/Full-time</p>
+      </div>
+      <div class="highlight">
+        <p><strong>Schedule:</strong> Flexible, 15–20+ hours per week</p>
+      </div>
+    </div>
   
     <h3>About Us</h3>
     <p>We are an innovative English teaching platform offering online classes via ClassIn for Chinese learners, including children and adults.</p>
@@ -254,7 +540,7 @@ body {
   
     <h3>Requirements</h3>
     <ul>
-      <li>Bachelor’s degree or higher.</li>
+      <li>Bachelor's degree or higher.</li>
       <li>Native English speaker.</li>
       <li>1+ year of teaching experience (children or adults).</li>
       <li>Proficient in ClassIn tools.</li>
@@ -280,22 +566,28 @@ body {
     <p><strong>Benefits:</strong> Flexible schedule</p>
   </section>
 
-  <section class="become-teacher">
-    <h2>Join Our Teaching Team</h2>
-    <p>Share your expertise and help others master English</p>
-    <a href="https://forms.gle/hhKdZ1ddtvZydqxB7" class="cta-button" target="_blank">Apply as a Teacher</a>
-  </section>
-  
   <section class="teachers-section">
-    <h2 class="section-title">Our Expert Teachers</h2>
-    <div class="teachers-grid">
-      <!-- Teacher cards will be dynamically generated -->
+    <div class="container">
+      <h2 class="section-title">Our Expert Teachers</h2>
+      <div class="teachers-grid">
+        <!-- Teacher cards will be dynamically generated -->
+      </div>
+      <div class="more-teachers">...</div>
     </div>
-    <div class="more-teachers">...</div>
+  </section>
+
+  <section class="become-teacher">
+    <div class="container">
+      <h2>Join Our Teaching Team</h2>
+      <p>Share your expertise and help others master English while enjoying a flexible work schedule</p>
+      <a href="https://forms.gle/hhKdZ1ddtvZydqxB7" class="cta-button" target="_blank">Apply as a Teacher</a>
+    </div>
   </section>
 
   <footer class="footer">
-    <p>Copyright © 2024 Speak Easy Co., Ltd. All rights reserved.</p>
+    <div class="container">
+      <p>Copyright © 2024 Speak Easy Co., Ltd. All rights reserved.</p>
+    </div>
   </footer>
 
 <script>
@@ -322,7 +614,9 @@ teacherNames.forEach((name, index) => {
   teacherCard.className = 'teacher-card';
   
   teacherCard.innerHTML = `
-    <img class="teacher-img" src="./images/${name}.jpg" alt="${name}">
+    <div class="teacher-img-container">
+      <img class="teacher-img" src="./images/${name}.jpg" alt="${name}">
+    </div>
     <div class="teacher-info">
       <h3 class="teacher-name">${name}</h3>
       <p class="teacher-specialty">${specialties[index]}</p>
@@ -330,6 +624,16 @@ teacherNames.forEach((name, index) => {
   `;
   
   teachersGrid.appendChild(teacherCard);
+});
+
+// 添加滚动效果
+window.addEventListener('scroll', function() {
+  const header = document.querySelector('.header');
+  if (window.scrollY > 50) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
 });
 </script>
 </body>
